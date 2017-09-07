@@ -1,0 +1,16 @@
+p + span   {
+  color: blue;
+}
+
+.articles {
+  display: none;
+  background-color: grey;
+}
+
+a {
+    display: none;
+}
+
+.outer-pagination a {
+display: inline;
+}
