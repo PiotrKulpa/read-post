@@ -104,7 +104,7 @@
 		 			}
 
 		 		};
-
+				//return to first page
 				function firstButtonEvent (e) {
 					console.log(pagButtons);
 					e.preventDefault();
@@ -116,7 +116,7 @@
 					$( ".articles" ).hide(); //hide to prevent double
 					$( ".articles" ).slice( 0, 10 ).show( ); //setting range by pagination button
 				};
-
+				//go to last page
 				 function lastButtonEvent (e) {
 					e.preventDefault();
 					that.minBtnRange = pagButtons - 10;
@@ -129,13 +129,18 @@
 					$( ".articles" ).hide(); //hide to prevent double
 					$( ".articles" ).slice( that.minRange, that.maxRange ).show( ); //setting range by pagination button
 				};
-
-
-
+				//show hide articles
+				 function articleToggle () {
+						$(this).parent().find('p').slideToggle();
+				};
+				//events handlers
+				$('.articles').on('click', 'h1', articleToggle);
 				$('.pagination').on('click', 'a', buttonsEvent);
 			 	$('.first-button').on('click', firstButtonEvent);
 			 	$('.last-button').on('click', lastButtonEvent);
 		};
+
+
 	};
 //end of main object
 
