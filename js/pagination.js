@@ -2,9 +2,8 @@
 //$(document).ready(function () {
 
 	function Pagination (src, range) {
-		this.src = src;
-		this.range = range;
-		this.html2 = 'jakis text1';
+		this.src = src;// source data to load
+		this.range = range;//articels per page
 		this.html = '';
 		this.pag = '';
 		this.tempPag = {};
@@ -15,24 +14,22 @@
 		this.maxBtnRange = 10;
 		this.j = 0;
 		this.temp = {};
-		this.pagButtons = 0;
+
 
 		var that = this;
 
-
-
 		this.doAjax = function () {
-
 			$.getJSON(this.src, this.loadData)
 		};
 
 
 
+		//main method for doing AJAX
 		this.loadData = function (data) {
 
-			this.pagButtons = Math.ceil(data.length / that.range);
-			this.numOfArticles = data.length;
-			that.pagButtons = this.pagButtons;//uchwyty musza byc wewnatrz funkcji asynchronicznej success, tylko wtedy masz dostep do aktualnych danych, w tym przypadku do data.length
+			this.numOfArticles = data.length;//number of all articles
+			var pagButtons = Math.ceil(data.length / that.range);//number of all pagination buttons
+
 
 			$.each(data, function (key, val) {
 				//creating content change this to goal different content elements
@@ -41,9 +38,8 @@
 				that.html += '<p>Article content: ' + val.content + '</p></div>';
 			});
 
-
 				//creating pag buttons
-				for (var i = 0; i <  this.pagButtons; i++) {
+				for (var i = 0; i <  pagButtons; i++) {
 					that.j++;
 					that.pag += '<a href="#" data-pagnum="'+ i + '">' + that.j + ' </a>';
 				};
@@ -58,10 +54,10 @@
 				//console.log(tempPag);
 				 $('.pagination').prepend(that.tempPagDef);
 
-				 //tworzysz zwykle funkcje pomocnicze ktore sa przypisane do uchwytow wraz z wywolaniem glownej metody
 
+				 //helpers
 				  function buttonsEvent(e) {
-			 			//method for pagination buttons
+			 			//events for pagination buttons
 			 			e.preventDefault();
 			 			//events for articles
 			 			var currentPage = $(this).data('pagnum'); //catch button number from data-pagnum
@@ -69,7 +65,7 @@
 			 			that.maxRange = that.minRange + that.range;
 			 			$( ".articles" ).hide(); //hide to prevent double
 			 			$( ".articles" ).slice( that.minRange, that.maxRange ).show( ); //setting range by pagination button
-			 			//events for pagination buttons
+
 			 			//prevent to count -10 if current button is less than 10
 		 			if ($(this).is('.pagination a:first') && currentPage < 10) {
 		 				that.minBtnRange = 0;
@@ -77,10 +73,10 @@
 		 				that.tempPag = $(that.temp).find('a').slice( that.minBtnRange, that.maxBtnRange ).css('display', 'inline').clone();
 		 				$('span.pagination >a').remove();
 		 				$('span.pagination').prepend(that.tempPag);
-		 			} else if ($(this).is('.pagination a:last') && currentPage > that.pagButtons -10) {
+		 			} else if ($(this).is('.pagination a:last') && currentPage > pagButtons -10) {
 		 				//last buttons
-		 				that.minBtnRange = that.pagButtons - 10;
-		 				that.maxBtnRange = that.pagButtons;
+		 				that.minBtnRange = pagButtons - 10;
+		 				that.maxBtnRange = pagButtons;
 		 				that.tempPag = $(that.temp).find('a').slice( that.minBtnRange, that.maxBtnRange ).css('display', 'inline').clone();
 		 				$('span.pagination > a').remove();
 		 				$('span.pagination').prepend(that.tempPag);
@@ -89,7 +85,6 @@
 		 				that.minBtnRange = currentPage - 10;
 		 				that.maxBtnRange = currentPage;
 		 				that.tempPag = $(that.temp).find('a').slice( that.minBtnRange, that.maxBtnRange ).css('display', 'inline').clone();
-
 		 				$('span.pagination > a').remove();
 		 				$('span.pagination').prepend(that.tempPag);
 		 			} else if ($(this).is('.pagination a:last')) {
@@ -111,6 +106,7 @@
 		 		};
 
 				function firstButtonEvent (e) {
+					console.log(pagButtons);
 					e.preventDefault();
 					that.minBtnRange = 0;
 					that.maxBtnRange = 10;
@@ -123,9 +119,9 @@
 
 				 function lastButtonEvent (e) {
 					e.preventDefault();
-					that.minBtnRange = that.pagButtons - 10;
-					that.maxBtnRange = that.pagButtons;
-					that.maxRange = that.pagButtons * that.range;
+					that.minBtnRange = pagButtons - 10;
+					that.maxBtnRange = pagButtons;
+					that.maxRange = pagButtons * that.range;
 					that.minRange = that.maxRange - that.range;
 					that.tempPag = $(that.temp).find('a').slice( that.minBtnRange, that.maxBtnRange ).css('display', 'inline').clone();
 					$('span.pagination > a').remove();
@@ -134,14 +130,15 @@
 					$( ".articles" ).slice( that.minRange, that.maxRange ).show( ); //setting range by pagination button
 				};
 
+
+
 				$('.pagination').on('click', 'a', buttonsEvent);
 			 	$('.first-button').on('click', firstButtonEvent);
 			 	$('.last-button').on('click', lastButtonEvent);
-
 		};
 	};
+//end of main object
 
-	//koniec glownego obiektu
 	var loadPost = new Pagination("data.json", 10);
 	loadPost.doAjax();
 
