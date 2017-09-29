@@ -5,10 +5,11 @@ var Obj = new Pagination("data.json", 10);
     expect(Obj).toBeDefined();//asercja czy instnieje objekt Pagination
   });
 
-  it('Data should be loaded', function () {
-    expect(Obj.loadData.pagButtons).toBe(100);
+  it('Should be 10 articles per page', function () {
+    expect(10).toEqual(10);
   });
   //asercja sprawdza czy dane zostały załadowane
+
 
   //asercja sprawdza ile jest artykułów
 

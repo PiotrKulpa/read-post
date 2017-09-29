@@ -27,7 +27,7 @@
 		//main method for doing AJAX
 		this.loadData = function (data) {
 
-			this.numOfArticles = data.length;//number of all articles
+			that.numOfArticles = data.length;//number of all articles
 			var pagButtons = Math.ceil(data.length / that.range);//number of all pagination buttons
 
 
