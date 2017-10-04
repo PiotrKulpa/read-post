@@ -31,21 +31,22 @@ Form.prototype.check = function () {
 };
 
 Form.prototype.send = function(  ) {
-  //event.preventDefault();
-  //WYSLIJ AJAXEM ZSERIALIZOWANE DANE Z FORMULARZA
-  //ustaw zmienna na serialize
-  // zrob ajax
-  //jesli sukces wyczysc dane i ustaw pole  msg na zielono
-  //jesli blad nie czysc danych ustaw pole msg na czerono
   var data = $( "form" ).serialize(),
   host = window.location.href;
-  $.post( host + "api/form", data ).done( $('.msg').text('Mail zostal wyslany.')).fail($('.msg').text('Wysylanie nie powiodlo się, spróbuj ponownie.'));
+  $.post( host + "api/form", data )
+  .done( function () {
+    $('.msg').text('Mail zostal wyslany.');
+    $('.email').val('');
+    $('.textarea').val('');
+  })
+  .fail( function () {
+    $('.msg').text('Wysylanie nie powiodlo się, spróbuj ponownie.');
+  });
   console.log( $( "form" ).serialize() );
 };
 
 var sendf = new Form();
 $( "form" ).on( "submit", function( event ) {
-  //WARUNKI SPELNIONE WYSYLAJ
   event.preventDefault();
   $('.email').css('background-color', 'white');
   $('.textarea').css('background-color', 'white');

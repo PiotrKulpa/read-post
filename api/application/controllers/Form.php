@@ -22,9 +22,6 @@ class Form extends CI_Controller {
 	 */
 	public function index()
 	{
-
-//przechwyc dane z posta i wyslij wioadomosc
-
 			$email = $this->input->post('email');
 			$textarea = $this->input->post('textarea');
 
@@ -40,21 +37,21 @@ class Form extends CI_Controller {
 				$this->email->subject('Email Test');
 				$this->email->message($textarea);
 
-				//$this->email->send();
 
-				header('Content-Type: application/json');
-    		echo json_encode(array('status' => 'file is uploaded'));
-        die();
+
+				if ($this->email->send()) {
+					header('Content-Type: application/json');
+	    		echo json_encode(array('status' => 'mail zostal wyslany'));
+	        die();
+				} else {
+					header('Content-Type: application/json');
+	    		echo json_encode(array('status' => 'problem z wyslaniem emaila'));
+	        die();
+				}
 			} else {
 				header('Content-Type: application/json');
-    		echo json_encode(array('status' => 'failed to upload'));
+    		echo json_encode(array('status' => 'problem z przeslaniem danych'));
         die();
 			}
-
-
-
-
 	}
-
-
 }
