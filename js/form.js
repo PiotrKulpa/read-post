@@ -37,10 +37,9 @@ Form.prototype.send = function(  ) {
   // zrob ajax
   //jesli sukces wyczysc dane i ustaw pole  msg na zielono
   //jesli blad nie czysc danych ustaw pole msg na czerono
-  var data = $( "form" ).serialize();
-  $.post( "form.php", data )
-  .done( $('.msg').text('Mail zostal wyslany.'))
-  .fail($('.msg').text('Wysylanie nie powiodlo się, spróbuj ponownie.'));
+  var data = $( "form" ).serialize(),
+  host = window.location.href;
+  $.post( host + "api/form", data ).done( $('.msg').text('Mail zostal wyslany.')).fail($('.msg').text('Wysylanie nie powiodlo się, spróbuj ponownie.'));
   console.log( $( "form" ).serialize() );
 };
 
