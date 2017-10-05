@@ -1,4 +1,4 @@
-//(function ($) {
+(function ($) {
 //$(document).ready(function () {
 
 	function Pagination (src, range) {
@@ -154,4 +154,4 @@
 
 
 //})
-//}) ( jQuery );
+}) ( jQuery );

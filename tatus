@@ -1,0 +1,41 @@
+[33mcommit e5475a72aeea72be22a960248bd23cba8a54f7eb[m
+Author: Piotr Kulpa <p.kulpa@onet.eu>
+Date:   Wed Oct 4 16:17:31 2017 +0200
+
+    fixed .done() & .fail()
+
+[33mcommit 00a00d793407d143010e67543dc5e99dc4810318[m
+Author: Piotr Kulpa <p.kulpa@onet.eu>
+Date:   Wed Oct 4 14:40:17 2017 +0200
+
+    api - codeigniter
+
+[33mcommit c925d2ad72093585c66b8745b5c6bffe11fdfd67[m
+Author: Piotr Kulpa <p.kulpa@onet.eu>
+Date:   Fri Sep 29 23:48:05 2017 +0200
+
+    Form
+
+[33mcommit 0b27c029fdf2be5c9d8d34aecba12ad579c879ee[m
+Author: Piotr Kulpa <p.kulpa@onet.eu>
+Date:   Tue Sep 26 20:27:53 2017 +0200
+
+    show hide articles added
+
+[33mcommit 160357e3431e6d8ae599616d2c56a98ae9669e3f[m
+Author: Piotr Kulpa <p.kulpa@onet.eu>
+Date:   Tue Sep 26 18:10:21 2017 +0200
+
+    fixed pagButtons
+
+[33mcommit 4f58c3dbb6d732efb09a81bf6f3acfe58e505aab[m
+Author: Piotr Kulpa <p.kulpa@onet.eu>
+Date:   Mon Sep 25 21:14:16 2017 +0200
+
+    modified loadData method - added handlers inside
+
+[33mcommit dc7fac0f1e2f7086da61fdf21485ec41cc0fe9e8[m
+Author: Piotr Kulpa <p.kulpa@onet.eu>
+Date:   Thu Sep 7 14:09:35 2017 +0200
+
+    Basic code, based on  prototype style, changed to method

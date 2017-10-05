@@ -5,16 +5,60 @@
     <title></title>
     <script src="js/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link href="lightbox/dist/css/lightbox.css" rel="stylesheet">
   </head>
   <body>
-    <div class="result"></div>
+<!--MENU-->
+<!--dodaj mozliwość przewijania strony; animacja do konkretnego id-->
+<!--dodaj lightboxa-->
+<!--zaprogramuj ladowanie zdjec-->
+    <div class="navbar">
+        <a href="">Home</a>
+        <a href="#news">News</a>
+        <a href="#gallery">Galeria</a>
+      <div class="dropdown">
+        <button class="dropbtn">Dropdown
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="#films">Filmy</a>
+          <a href="#contact">Kontakt</a>
+          <a href="#">Link 3</a>
+        </div>
+      </div>
+    </div>
+
+<!--POSTS & PAGINATION-->
+    <div id="news" class="result"></div>
     <div class="outer-pagination">
       <span><a href="#" class="first-button">Pierwsza strona </a></span>
       <span class="pagination"></span>
       <span><a href="#" class="last-button"> Ostatnia strona</a></span>
     </div>
 
-    <form>
+<!--ANIMATED SCROLL TEST-->
+  <div id="gallery">
+    Galeria zdjęć<br>
+
+<a class="example-image-link" href="images/original/0.jpg" data-lightbox="example-2" data-title="Optional caption.">
+  <img class="example-image" src="images/thumbs/0.jpg" alt="Two men in bicycle jerseys sitting outside at table having coffee">
+</a>
+<a class="example-image-link" href="images/original/1.jpg" data-lightbox="example-2" data-title="Optional caption.">
+  <img class="example-image" src="images/thumbs/1.jpg" alt="Two men in bicycle jerseys sitting outside at table having coffee">
+</a>
+<a class="example-image-link" href="images/original/2.jpg" data-lightbox="example-2" data-title="Optional caption.">
+  <img class="example-image" src="images/thumbs/2.jpg" alt="Two men in bicycle jerseys sitting outside at table having coffee">
+</a>
+<a class="example-image-link" href="images/original/3.jpg" data-lightbox="example-2" data-title="Optional caption.">
+  <img class="example-image" src="images/thumbs/3.jpg" alt="Two men in bicycle jerseys sitting outside at table having coffee">
+</a>
+
+
+  </div>
+  <div id="films">Fimy wideo</div>
+
+<!--FORM-->
+    <form id="contact">
       <label for="email">email:</label>
       <input type="text" name="email" value="" class="email"><br><br>
       <label for="textarea">wiadomość:</label>
@@ -23,7 +67,12 @@
     </form><br>
     <span class="msg"></span>
 
+<!--STOPKA-->
+<div id="footer">Stopka</div>
+
     <script src="js/pagination.js"></script>
     <script src="js/form.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="lightbox/dist/js/lightbox.js"></script>
   </body>
 </html>
