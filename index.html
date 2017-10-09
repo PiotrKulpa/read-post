@@ -5,74 +5,75 @@
     <title></title>
     <script src="js/jquery-3.2.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
     <link href="lightbox/dist/css/lightbox.css" rel="stylesheet">
+    <script src="js/loader.js"></script>
   </head>
   <body>
-<!--MENU-->
-<!--dodaj mozliwość przewijania strony; animacja do konkretnego id-->
-<!--dodaj lightboxa-->
-<!--zaprogramuj ladowanie zdjec-->
-    <div class="navbar">
-        <a href="">Home</a>
-        <a href="#news">News</a>
-        <a href="#gallery">Galeria</a>
-      <div class="dropdown">
-        <button class="dropbtn">Dropdown
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-content">
-          <a href="#films">Filmy</a>
-          <a href="#contact">Kontakt</a>
-          <a href="#">Link 3</a>
-        </div>
-      </div>
-    </div>
-
-<!--POSTS & PAGINATION-->
-    <div id="news" class="result"></div>
-    <div class="outer-pagination">
-      <span><a href="#" class="first-button">Pierwsza strona </a></span>
-      <span class="pagination"></span>
-      <span><a href="#" class="last-button"> Ostatnia strona</a></span>
-    </div>
-
-<!--ANIMATED SCROLL TEST-->
-  <div id="gallery">
-    Galeria zdjęć<br>
-
-<a class="example-image-link" href="images/original/0.jpg" data-lightbox="example-2" data-title="Optional caption.">
-  <img class="example-image" src="images/thumbs/0.jpg" alt="Two men in bicycle jerseys sitting outside at table having coffee">
-</a>
-<a class="example-image-link" href="images/original/1.jpg" data-lightbox="example-2" data-title="Optional caption.">
-  <img class="example-image" src="images/thumbs/1.jpg" alt="Two men in bicycle jerseys sitting outside at table having coffee">
-</a>
-<a class="example-image-link" href="images/original/2.jpg" data-lightbox="example-2" data-title="Optional caption.">
-  <img class="example-image" src="images/thumbs/2.jpg" alt="Two men in bicycle jerseys sitting outside at table having coffee">
-</a>
-<a class="example-image-link" href="images/original/3.jpg" data-lightbox="example-2" data-title="Optional caption.">
-  <img class="example-image" src="images/thumbs/3.jpg" alt="Two men in bicycle jerseys sitting outside at table having coffee">
-</a>
-
+  <!--MENU-->
+  <!--dodaj info o ciasteczkach-->
+  <!--zrob logowanie do zaplecza-->
+  <div class="cookies">
+    <div class="cookies-btn"><i class="fa fa-times-circle fa-2x" aria-hidden="true"></i></div>
+    Ta strona używa ciasteczek.
 
   </div>
-  <div id="films">Fimy wideo</div>
+  <img src="assets/spinner.svg" class="loader">
 
-<!--FORM-->
-    <form id="contact">
-      <label for="email">email:</label>
-      <input type="text" name="email" value="" class="email"><br><br>
-      <label for="textarea">wiadomość:</label>
-      <textarea rows="9" cols="50" name="textarea" class="textarea"></textarea><br>
-      <input type="submit">
-    </form><br>
-    <span class="msg"></span>
+    <div class="content">
+      <div class="navbar">
+          <a href="">Home</a>
+          <a href="#news">News</a>
+          <a href="#gallery">Galeria</a>
+        <div class="dropdown">
+          <button class="dropbtn">Dropdown
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="#films">Filmy</a>
+            <a href="#contact">Kontakt</a>
+            <a href="#">Link 3</a>
+          </div>
+        </div>
+      </div>
 
-<!--STOPKA-->
-<div id="footer">Stopka</div>
+    <!--POSTS & PAGINATION-->
+      <div id="news" class="result">
+        <img src="assets/spinner.svg" class="post-loader">
+      </div>
+      <div class="outer-pagination">
+        <span><a href="#" class="first-button">Pierwsza strona </a></span>
+        <span class="pagination"></span>
+        <span><a href="#" class="last-button"> Ostatnia strona</a></span>
+      </div>
 
-    <script src="js/pagination.js"></script>
+      <!--ANIMATED SCROLL TEST-->
+      <div id="gallery">
+        Galeria zdjęć<br>
+        <img src="assets/spinner.svg" class="img-loader">
+      </div>
+
+      <div id="films">Fimy wideo</div>
+
+      <!--FORM-->
+      <form id="contact">
+        <label for="email">email:</label>
+        <input type="text" name="email" value="" class="email"><br><br>
+        <label for="textarea">wiadomość:</label>
+        <textarea rows="9" cols="50" name="textarea" class="textarea"></textarea><br>
+        <input type="submit">
+      </form><br>
+      <span class="msg"></span>
+
+      <!--STOPKA-->
+      <div id="footer">Stopka</div>
+
+    </div>
+    <script src="js/post.js"></script>
     <script src="js/form.js"></script>
     <script src="js/menu.js"></script>
     <script src="lightbox/dist/js/lightbox.js"></script>
+    <script src="js/images.js"></script>
+    <script src="js/cookies.js"></script>
   </body>
 </html>

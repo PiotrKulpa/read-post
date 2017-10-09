@@ -19,7 +19,9 @@
 		var that = this;
 
 		this.doAjax = function () {
-			$.getJSON(this.src, this.loadData)
+			$.getJSON(this.src, this.loadData).done(function () {
+
+			})
 		};
 
 
@@ -27,6 +29,7 @@
 		//main method for doing AJAX
 		this.loadData = function (data) {
 
+			$('.post-loader').hide();
 			that.numOfArticles = data.length;//number of all articles
 			var pagButtons = Math.ceil(data.length / that.range);//number of all pagination buttons
 

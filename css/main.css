@@ -1,3 +1,28 @@
+.cookies {
+  position: fixed;
+  bottom: 0px;
+  background-color: grey;
+  border-radius: 5px;
+  padding: 5px;
+  width: 99%;
+  opacity: 0.8;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+
+.cookies-btn {
+  text-align: right;
+}
+
+#news {
+  padding-top: 55px;
+}
+
+.content {
+  display: none;
+}
+
 p + span   {
   color: blue;
 }
@@ -85,7 +110,7 @@ display: inline;
 
 #gallery {
   background-color: pink;
-  height: 500px;
+  //height: 500px;
   padding-top: 100px;
 
 }
