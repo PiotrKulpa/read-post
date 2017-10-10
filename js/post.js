@@ -19,9 +19,7 @@
 		var that = this;
 
 		this.doAjax = function () {
-			$.getJSON(this.src, this.loadData).done(function () {
-
-			})
+			$.getJSON(this.src, this.loadData);
 		};
 
 
@@ -34,7 +32,7 @@
 			var pagButtons = Math.ceil(data.length / that.range);//number of all pagination buttons
 
 
-			$.each(data, function (key, val) {
+			$.each(data.reverse(), function (key, val) {
 				//creating content change this to goal different content elements
 				that.html += '<div class="articles"><h1>Article title: ' + val.title + '</h1>';
 				that.html += '<p>id: ' + val.id + '</p>';

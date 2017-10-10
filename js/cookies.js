@@ -1,7 +1,10 @@
-(function ($) {
+//(function ($) {
 	//dodaj mozliwosc zapamietywania
-	function setCookie(name, val, days) {
-    if (days) {
+
+	function Cookies () {};
+
+	Cookies.prototype.setCookie = function (name, val, days) {
+		if (days) {
         var data = new Date();
         data.setTime(data.getTime() + (days * 24*60*60*1000));
         var expires = "; expires="+data.toGMTString();
@@ -9,10 +12,10 @@
         var expires = "";
     }
     document.cookie = name + "=" + val + expires + "; path=/";
-}
+	};
 
-function showCookie(name) {
-    if (document.cookie!="") { //jeżeli document.cookie w ogóle istnieje
+	Cookies.prototype.showCookie = function (name) {
+		if (document.cookie!="") { //jeżeli document.cookie w ogóle istnieje
         var cookies=document.cookie.split("; ");  //tworzymy z niego tablicę ciastek
         for (var i=0; i<cookies.length; i++) { //i robimy po niej pętlę
             var cookieName=cookies[i].split("=")[0]; //nazwa ciastka
@@ -22,9 +25,14 @@ function showCookie(name) {
             }
         }
     }
-}
+	};
 
-if (showCookie('visited')) {
+
+
+
+var cookies = new Cookies();
+
+if (cookies.showCookie('visited')) {
 	$('.cookies').hide();
 } else {
 	console.log('nie istnieje');
@@ -32,7 +40,7 @@ if (showCookie('visited')) {
 
 	$('.cookies-btn').on('click', function () {
 		$('.cookies').hide();
-		setCookie('visited', 'yes', 356);
+		cookies.setCookie('visited', 'yes', 356);
+	});
 
-	})
-}) ( jQuery );
+//}) ( jQuery );
