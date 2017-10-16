@@ -9,8 +9,22 @@ Form.prototype.check = function () {
   mailRegex = /[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}/,
   textareaRegex = /^$|[#$%&*^]/;
 
+  function IsRecapchaValid()
+      {
+      var res = grecaptcha.getResponse();
+      if (res == "" || res == undefined || res.length == 0)
+         {
+           console.log('rekapcza niezaliczona');
+          return false;
+         }
+         console.log('rekapcza zaliczona');
+       return true;
+     };
 
-  if (mailRegex.test(email) && textareaRegex.test(textarea) === false) {
+
+
+
+  if (mailRegex.test(email) && textareaRegex.test(textarea) === false && IsRecapchaValid()) {
     console.log( 'true' );
     return true;
   } else {

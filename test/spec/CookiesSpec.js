@@ -3,10 +3,8 @@ describe("Cookies test before set", function() {
 
 
   beforeEach(function() {
-    document.cookie = "visited=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = '';
     cookies = new Cookies();
-    var val ='cos';
-
   });
 
   it("Cookies exist", function() {
@@ -25,7 +23,7 @@ describe("Cookies test before set", function() {
   });
 
   it("document.cookie should be empty", function() {
-    expect(document.cookie).toBe('');
+    expect(document.cookie).toEqual('');
     //demonstrates use of custom matcher
   });
 
@@ -33,50 +31,73 @@ describe("Cookies test before set", function() {
     expect(cookies.setCookie()).toBe(undefined);
     //demonstrates use of custom matcher
   });
+});
 
 
 
-//name, val, days
-/*
-  describe("when song has been paused", function() {
-    beforeEach(function() {
-      player.play(song);
-      player.pause();
-    });
+describe("Cookies test afteer set", function() {
+  var cookies;
 
-    it("should indicate that the song is currently paused", function() {
-      expect(player.isPlaying).toBeFalsy();
 
-      // demonstrates use of 'not' with a custom matcher
-      expect(player).not.toBePlaying(song);
-    });
-
-    it("should be possible to resume", function() {
-      player.resume();
-      expect(player.isPlaying).toBeTruthy();
-      expect(player.currentlyPlayingSong).toEqual(song);
-    });
+  beforeEach(function() {
+    //document.cookie = "visited=yes; expires=Thu, 01 Jan 2018 00:00:00 UTC; path=/;";
+    cookies = new Cookies();
+    cookies.setCookie('visited', 'yes', 356);
+    cookies.showCookie('visited');
   });
 
-  // demonstrates use of spies to intercept and test method calls
-  it("tells the current song if the user has made it a favorite", function() {
-    spyOn(song, 'persistFavoriteStatus');
-
-    player.play(song);
-    player.makeFavorite();
-
-    expect(song.persistFavoriteStatus).toHaveBeenCalledWith(true);
+  it("Cookies exist", function() {
+    expect(cookies).toBeDefined();
+    //demonstrates use of custom matcher
   });
 
-  //demonstrates use of expected exceptions
-  describe("#resume", function() {
-    it("should throw an exception if song is already playing", function() {
-      player.play(song);
-
-      expect(function() {
-        player.resume();
-      }).toThrowError("song is already playing");
-    });
+  it("Cookies method exist", function() {
+    expect(cookies.showCookie).toBeDefined();
+    //demonstrates use of custom matcher
   });
-*/
+
+  it("Cookies method exist", function() {
+    expect(cookies.setCookie).toBeDefined();
+    //demonstrates use of custom matcher
+  });
+
+  it("document.cookie should not be empty", function() {
+    expect(document.cookie.length).not.toBeNull();
+    //demonstrates use of custom matcher
+  });
+
+  describe("A spy Cookies object", function() {
+
+
+  beforeEach(function() {
+    cookies = new Cookies();
+
+    spyOn(cookies, 'setCookie');
+    spyOn(cookies, 'showCookie');
+    cookies.setCookie('visited', 'yes', 356);
+    cookies.showCookie('visited');
+
+  });
+
+  it("tracks that the spy was called", function() {
+    expect(cookies.setCookie).toHaveBeenCalled();
+  });
+
+  it("tracks that the spy was called", function() {
+    expect(cookies.showCookie).toHaveBeenCalled();
+  });
+
+  it("tracks all the arguments of its calls", function() {
+    expect(cookies.setCookie).toHaveBeenCalledWith('visited', 'yes', 356);
+  });
+
+  it("tracks all the arguments of its calls", function() {
+    expect(cookies.showCookie).toHaveBeenCalledWith('visited');
+  });
+
+
+
+});
+
+
 });

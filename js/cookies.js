@@ -1,8 +1,8 @@
 //(function ($) {
-	//dodaj mozliwosc zapamietywania
+	
 
 	function Cookies () {};
-
+	//metoda do ustawiania ciasteczek
 	Cookies.prototype.setCookie = function (name, val, days) {
 		if (days) {
         var data = new Date();
@@ -31,13 +31,13 @@
 
 
 var cookies = new Cookies();
-
+//check if cookie exist
 if (cookies.showCookie('visited')) {
 	$('.cookies').hide();
 } else {
 	console.log('nie istnieje');
 }
-
+//if there is no cookie then set cookie
 	$('.cookies-btn').on('click', function () {
 		$('.cookies').hide();
 		cookies.setCookie('visited', 'yes', 356);
