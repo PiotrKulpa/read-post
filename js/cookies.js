@@ -1,5 +1,5 @@
 //(function ($) {
-	
+
 
 	function Cookies () {};
 	//metoda do ustawiania ciasteczek
@@ -13,7 +13,7 @@
     }
     document.cookie = name + "=" + val + expires + "; path=/";
 	};
-
+	//metoda so sprawdzania czy sa ustawione ciasteczka
 	Cookies.prototype.showCookie = function (name) {
 		if (document.cookie!="") { //jeżeli document.cookie w ogóle istnieje
         var cookies=document.cookie.split("; ");  //tworzymy z niego tablicę ciastek
