@@ -39,6 +39,34 @@ class Login_model extends CI_Model {
 
 		}
 
+    public function posts()
+  	{
+  		$query = $this->db->query("SELECT * FROM posts");
+  		$row = $query->result();
+
+    		$this->output
+            ->set_status_header(200)
+            ->set_content_type('application/json', 'utf-8')
+            ->set_output(json_encode($row, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
+            ->_display();
+    				exit;
+
+  	}
+
+    public function gallery()
+    {
+      $query = $this->db->query("SELECT * FROM gallery");
+      $row = $query->result();
+
+        $this->output
+            ->set_status_header(200)
+            ->set_content_type('application/json', 'utf-8')
+            ->set_output(json_encode($row, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
+            ->_display();
+            exit;
+
+    }
+
 		public function add_music()
 		{
 			//Ustawiamy tytuł

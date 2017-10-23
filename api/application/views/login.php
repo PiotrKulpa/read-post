@@ -15,16 +15,16 @@
 
 	    <div class="form-group row">
 
-	      <label for="inputEmail3" class="col-sm-2 col-form-label">Login</label>
+	      <label for="inputLogin" class="col-sm-2 col-form-label">Login</label>
 	      <div class="col-sm-10">
-	        <input type="text" name="login" class="form-control" id="inputEmail3" placeholder="Wpisz login">
+	        <input type="text" name="login" class="form-control" id="inputLogin" placeholder="Wpisz login">
 					<?php echo form_error('login', '<div class="error">', '</div>'); ?>
 	      </div>
 	    </div>
 	    <div class="form-group row">
-	      <label for="inputPassword3" class="col-sm-2 col-form-label">Haslo</label>
+	      <label for="inputPassword" class="col-sm-2 col-form-label">Haslo</label>
 	      <div class="col-sm-10">
-	        <input type="password" name="password" class="form-control" id="inputPassword3" placeholder="Wpisz haslo">
+	        <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Wpisz haslo">
 					<?php echo form_error('password', '<div class="error">', '</div>'); ?>
 	      </div>
 	    </div>
@@ -35,7 +35,7 @@
 	        <button type="submit" class="btn btn-primary">Zaloguj</button>
 	      </div>
 	    </div>
-			
+
 
 	  </form>
 	</div>

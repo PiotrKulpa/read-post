@@ -33,8 +33,7 @@ class Login extends CI_Controller {
 
 	public function panel()
 	{
-		$this->load->helper(array('form', 'url'));
-		$this->load->library('form_validation');
+
 		$this->form_validation->set_rules('login', 'Login', 'required', array('required' => '<div class="alert alert-danger" role="alert">Musisz podać %s.</div>'));
     $this->form_validation->set_rules('password', 'Hasło', 'required', array('required' => '<div class="alert alert-danger" role="alert">Musisz podać %s.</div>'));
 
@@ -90,7 +89,7 @@ class Login extends CI_Controller {
 		}
 			else{
 			//Autoryzacja przyznana za pomocą sesji
-			$this->load->view('admin.html');
+			$this->load->view('panel.html');
 			}
 
 
@@ -106,19 +105,19 @@ class Login extends CI_Controller {
 
 	}
 
-	public function out()
+	public function posts()
 	{
-		//generuje strony z json
-		$this->load->database();
-		$query = $this->db->query("SELECT * FROM users");
-		$row = $query->result();
+		$query = $this->Login_model->posts();
+	}
 
-		$this->output
-        ->set_status_header(200)
-        ->set_content_type('application/json', 'utf-8')
-        ->set_output(json_encode($row, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
-        ->_display();
-				exit;
+	public function add_posts()
+	{
+		echo 'OK';
+	}
+
+	public function gallery()
+	{
+		$query = $this->Login_model->gallery();
 	}
 
 }

@@ -10,9 +10,9 @@
     <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
   <body>
-  <!--MENU-->
-  <!--zabezpiecz formularz-->
-  <!--zrob logowanie do zaplecza ,  login na /api/login, logowanie wylacznie postronie serwera bez sesji, po zalogowaniu przesylanie danych ajaxem-->
+
+  <!--popraw post.js pokazuje 10 jako default a powinien tyle ile podamy w konstruktorze-->
+  <!--przesylanie danych ajaxem-->
   <div class="cookies">
     <div class="cookies-btn"><i class="fa fa-times-circle fa-2x" aria-hidden="true"></i></div>
     Ta strona używa ciasteczek.
@@ -55,10 +55,10 @@
         </div>
         <label>Sortuj wedlug:
         <select name='type' id='type'>
-          <option id='asc-name' value='1' selected='selected'>Nazwa rosnąco</option>
-          <option id='dsc-name' value='1'>Nazwa malejąco</option>
+          <option id='dsc-date' value='2' selected='selected'>Data malejąco</option>
           <option id='asc-date' value='2'>Data rosnąco</option>
-          <option id='dsc-date' value='2'>Data malejąco</option>
+          <option id='dsc-name' value='1'>Nazwa malejąco</option>
+          <option id='asc-name' value='1' >Nazwa rosnąco</option>
         </select>
       </label>
       </div>
