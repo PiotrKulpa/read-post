@@ -2,8 +2,78 @@
 <html>
 <head>
 	<title>Login</title>
-	<link rel="stylesheet" href="http://localhost/formtest/css/bootstrap.min.css">
-	<script src="http://localhost/formtest/ckeditor/ckeditor.js"></script>
+	<link rel="stylesheet" href="http://localhost/formtest/api/assets/css/bootstrap.min.css">
+	<script src="http://localhost/formtest/api/assets/ckeditor/ckeditor.js"></script>
+	<style>
+	#wrapper {
+  text-align: center;
+  margin: 0 auto;
+  padding: 0px;
+  width: 995px;
+}
+
+/* line 38, ../sass/screen.scss */
+form {
+  margin-top: 15px;
+}
+
+/* line 42, ../sass/screen.scss */
+#drop-btn {
+  background-color: #E6E2AF;
+  border: none;
+  padding: 10px;
+  width: 100px;
+  color: #002F2F;
+  font-weight: bold;
+}
+/* line 50, ../sass/screen.scss */
+#drop-btn:hover {
+  background-color: #EFECCA;
+}
+
+/* line 55, ../sass/screen.scss */
+#drop-area {
+  margin-top: 15px;
+  margin-left: 220px;
+  width: 550px;
+  height: 200px;
+  background-color: white;
+  border: 3px dashed grey;
+  vertical-align: middle;
+}
+
+/* line 65, ../sass/screen.scss */
+.success {
+  text-align: center;
+  vertical-align: middle;
+  margin-top: 15px;
+  padding: 10px;
+  color: #046380;
+  background-color: #D2EFCF;
+  font-weight: bold;
+}
+
+/* line 75, ../sass/screen.scss */
+.error {
+  vertical-align: middle;
+  margin-top: 15px;
+  color: red;
+  font-weight: bold;
+}
+
+/* line 82, ../sass/screen.scss */
+.drop-text {
+  margin-top: 70px;
+  color: grey;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+/* line 89, ../sass/screen.scss */
+#drop-area img {
+  max-width: 200px;
+}
+	</style>
 </head>
 <body>
 	<!--Logout button-->
@@ -32,7 +102,7 @@
 <div class="tab-content" id="myTabContent">
   <div class="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="home-tab">
 		<h1>Dodaj wpisy...</h1>
-		<form>
+		<form id="formpost">
 		<div class="form-group row">
 
  		 <label for="input-title" class="col-sm-2 col-form-label">Tytuł</label>
@@ -44,11 +114,11 @@
  	 <div class="form-group row">
  		 <label for="input-txt" class="col-sm-2 col-form-label">Treść</label>
  		 <div class="col-sm-10">
-			 <textarea class="form-control" name="input-txt" class="form-control" id="input-txt" placeholder="Wpisz treść"></textarea>
+			 <textarea class="form-control" name="inputtxt" class="form-control" id="inputtxt" placeholder="Wpisz treść"></textarea>
 			 <script>
                 // Replace the <textarea id="editor1"> with a CKEditor
                 // instance, using default configuration.
-                CKEDITOR.replace( 'input-txt' );
+                CKEDITOR.replace( 'inputtxt' );
       </script>
 
 
@@ -65,7 +135,20 @@
 
   </form>
 	</div>
-  <div class="tab-pane fade" id="photos" role="tabpanel" aria-labelledby="profile-tab">Dodaj zdjęcia...</div>
+  <div class="tab-pane fade" id="photos" role="tabpanel" aria-labelledby="profile-tab">
+		<h1>Dodaj zdjęcia...</h1>
+		<div id="wrapper">
+		<form id="formfile" method="post" enctype="multipart/form-data">
+			<h2>Wybierz pliki</h2>
+		 <input id="select-btn" type="file" name="userImage[]" multiple>
+		 <input id="drop-btn" type="submit">
+		</form>
+		 <div id="drop-area" class="upload-drop-zone">
+		  <h3 class="drop-text">...lub Przeciągnij i Upuść Pliki Tutaj</h3>
+		  <img class="loader" src="http://localhost/formtest/api/assets/spinner.svg">
+		 </div>
+		</div>
+	</div>
 	<div class="tab-pane fade" id="movies" role="tabpanel" aria-labelledby="profile-tab">Dodaj filmy...</div>
   <div class="tab-pane fade" id="dropdown1" role="tabpanel" aria-labelledby="dropdown1-tab">dropdown...</div>
   <div class="tab-pane fade" id="dropdown2" role="tabpanel" aria-labelledby="dropdown2-tab">dropdown2...</div>
@@ -73,10 +156,11 @@
 
 </div>
 
-<script src="http://localhost/formtest/js/jquery-3.2.1.min.js"></script>
-<script src="http://localhost/formtest/js/popper.min.js"></script>
-<script src="http://localhost/formtest/js/bootstrap.min.js"></script>
-<script src="http://localhost/formtest/js/post-panel.js"></script>
+<script src="http://localhost/formtest/api/assets/js/jquery-3.2.1.min.js"></script>
+<script src="http://localhost/formtest/api/assets/js/popper.min.js"></script>
+<script src="http://localhost/formtest/api/assets/js/bootstrap.min.js"></script>
+<script src="http://localhost/formtest/api/assets/js/post-panel.js"></script>
+<script src="http://localhost/formtest/api/assets/js/drag-and-drop-panel.js"></script>
 
 
 

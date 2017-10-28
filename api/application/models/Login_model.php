@@ -41,7 +41,7 @@ class Login_model extends CI_Model {
 
     public function posts()
   	{
-  		$query = $this->db->query("SELECT * FROM posts");
+  		$query = $this->db->get('posts');
   		$row = $query->result();
 
     		$this->output
@@ -50,8 +50,23 @@ class Login_model extends CI_Model {
             ->set_output(json_encode($row, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES))
             ->_display();
     				exit;
-
   	}
+
+    public function add_posts()
+    {
+      $title = $this->input->post('title');
+      $inputtxt = $this->input->post('inputtxt');
+      $now = time();
+       // Euro czas
+      $date = unix_to_human($now, TRUE, 'eu');
+      $data = array(
+        'title' => $title,
+        'text' => $inputtxt,
+        'date' => $date
+      );
+      $this->db->insert('posts', $data);
+
+    }
 
     public function gallery()
     {
@@ -66,6 +81,37 @@ class Login_model extends CI_Model {
             exit;
 
     }
+
+    public function add_gallery()
+		{
+//dodaj insert do bazy
+//rozwiaz problem sciezek- przenies wszystkie stale zasoby do api/assets
+//w js ustawisz sciezke przez window.location.hostname + 'api/assets'
+//w ci ustawisz sciezki przez base_url() + '/assets'
+
+      if (is_array($_FILES))
+        {
+          $fL = (count($_FILES));
+          for ($x = 0; $x < $fL; $x++){
+           if (is_uploaded_file($_FILES['userImage'.$x]['tmp_name'])) {
+            $sourcePath = $_FILES['userImage'.$x]['tmp_name'];
+            $targetPath = "./uploads/".$_FILES['userImage'.$x]['name'];
+            $targetName = $_FILES['userImage'.$x]['name'];
+            if(move_uploaded_file($sourcePath,$targetPath)) {
+            ?>
+             <div class="success">Plik: <?php echo $targetName; ?> został przesłany</div>
+             <?php
+            } else {
+          	  ?>
+          	 <div class="error">Wystąpił błąd podczas przesyłania: <?php echo $targetName; ?></div>
+          	 <?php
+            }
+           }
+          }
+        }
+
+
+		}
 
 		public function add_music()
 		{
@@ -107,51 +153,7 @@ class Login_model extends CI_Model {
 		}
 
 
-		public function add_photo()
-		{
-			//Ustawiamy tytuł
 
-			//Ustawiamy nazwe z rozszerzeniem
-			$ext = $this->upload->data('file_name');
-			//Ustawiamy nazwe bez rozszerzenia
-			$title = $this->upload->data('raw_name');
-
-			//Ustawiamy sciezke do pliku z rozszerzeniem
-			$rawsrc = $this->upload->data('file_name');
-			$baseurl = base_url()."uploads/photos/";
-			$src = $baseurl.$rawsrc;
-
-			//Ustawiamy sciezke do pliku z miniaturka
-			$thumbbaseurl = base_url()."uploads/photos/thumb/";
-			$thumbsrc = $thumbbaseurl.$rawsrc;
-
-			//Ustawiamy czas
-			$now = time();
-			 // Euro czas
-			$date = unix_to_human($now, TRUE, 'eu');
-
-			$data = array(
-			'mext' => $ext,
-			'mtitle' => $title,
-			'msrc' => $src,
-			'mthumb' => $thumbsrc,
-			'mdate' => $date
-			);
-
-			$photoquery = $this->db->insert('photos', $data);
-
-			if ($photoquery) {
-
-
-					return true;
-
-				} else {
-
-
-					return false;
-				}
-
-		}
 
 		public function add_video()
 		{

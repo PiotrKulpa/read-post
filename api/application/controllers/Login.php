@@ -112,12 +112,35 @@ class Login extends CI_Controller {
 
 	public function add_posts()
 	{
-		echo 'OK';
+		$is_logged_in = $this->session->userdata('is_logged_in');
+		if (!isset($is_logged_in) || $is_logged_in != true)
+		{
+			$this->load->view('login.php');
+
+		} else {
+
+				$this->Login_model->add_posts();
+
+		}
 	}
 
 	public function gallery()
 	{
 		$query = $this->Login_model->gallery();
+	}
+
+	public function add_gallery()
+	{
+		$is_logged_in = $this->session->userdata('is_logged_in');
+		if (!isset($is_logged_in) || $is_logged_in != true)
+		{
+			$this->load->view('login.php');
+
+		} else {
+
+				$this->Login_model->add_gallery();
+
+		}
 	}
 
 }
