@@ -4,6 +4,7 @@ class Login_model extends CI_Model {
         public function __construct()
         {
             $this->load->database();
+            $this->load->library('image_lib');
         }
 
 		//Walidacja logowania na zaplecze
@@ -85,7 +86,6 @@ class Login_model extends CI_Model {
     public function add_gallery()
 		{
 //dodaj insert do bazy
-//rozwiaz problem sciezek- przenies wszystkie stale zasoby do api/assets
 //w js ustawisz sciezke przez window.location.hostname + 'api/assets'
 //w ci ustawisz sciezki przez base_url() + '/assets'
 
@@ -95,9 +95,71 @@ class Login_model extends CI_Model {
           for ($x = 0; $x < $fL; $x++){
            if (is_uploaded_file($_FILES['userImage'.$x]['tmp_name'])) {
             $sourcePath = $_FILES['userImage'.$x]['tmp_name'];
-            $targetPath = "./uploads/".$_FILES['userImage'.$x]['name'];
+            $targetPath = "./uploads/images/original/".$_FILES['userImage'.$x]['name'];
             $targetName = $_FILES['userImage'.$x]['name'];
             if(move_uploaded_file($sourcePath,$targetPath)) {
+
+              //thumb creating
+    					$myimagename = $targetName;
+    					list($width, $height, $type, $attr) = getimagesize("uploads/images/original/".$myimagename);//getting original image width and height
+    					if($width >= $height)//checking and setting vertical or horizontal dimension
+    					{
+    						$mydim = 'height';
+    					}
+    					else
+    					{
+    						$mydim = 'width';
+    					}
+              //GD2 config
+    					$config['image_library'] = 'GD2';
+    					$config['source_image'] = 'uploads/images/original/'.$myimagename;
+    					$config['create_thumb'] = FALSE;
+    					$config['maintain_ratio'] = TRUE;
+    					$config['master_dim'] = $mydim;
+    					$config['height'] = '200';
+    					$config['width'] = '200';
+    					$config['new_image'] = 'uploads/images/thumbs';
+
+    					$this->image_lib->initialize($config);
+
+    					if ( ! $this->image_lib->resize())
+    					{
+    						echo $this->image_lib->display_errors();
+    					}else
+    					{
+    						list($thumbwidth, $thumbheight) = getimagesize("uploads/images/thumbs/".$myimagename);//getting thumb size
+    						if($thumbwidth >= $thumbheight)
+    						{
+    							$my_x_axis = ($thumbwidth - 200) / 2 ;//setting center of thumb horizontally
+    							$my_y_axis = 0;
+    						}
+    						else
+    						{
+    							$my_y_axis = ($thumbheight - 200) / 2 ;//setting center of thumb vertically
+    							$my_x_axis = 0;
+    						}
+    					}
+              //GD2 config
+    					$config2['image_library'] = 'GD2';
+    					$config2['source_image'] = 'uploads/images/thumbs/'.$myimagename;
+    					$config2['create_thumb'] = FALSE;
+    					$config2['maintain_ratio'] = FALSE;
+    					$config2['height'] = '200';
+    					$config2['width'] = '200';
+    					$config2['x_axis'] = $my_x_axis;
+    					$config2['y_axis'] = $my_y_axis;
+
+    					$this->image_lib->initialize($config2);
+
+              //cropping thumb
+    					if ( ! $this->image_lib->crop())
+    					{
+    						echo $this->image_lib->display_errors();
+    					}else
+    					{
+    						//success
+    					}
+              //end of thumb creating
             ?>
              <div class="success">Plik: <?php echo $targetName; ?> został przesłany</div>
              <?php
