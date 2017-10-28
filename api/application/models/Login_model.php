@@ -97,6 +97,7 @@ class Login_model extends CI_Model {
             $sourcePath = $_FILES['userImage'.$x]['tmp_name'];
             $targetPath = "./uploads/images/original/".$_FILES['userImage'.$x]['name'];
             $targetName = $_FILES['userImage'.$x]['name'];
+            $filename = pathinfo($_FILES['userImage'.$x]['name'], PATHINFO_FILENAME);
             if(move_uploaded_file($sourcePath,$targetPath)) {
 
               //thumb creating
@@ -160,6 +161,19 @@ class Login_model extends CI_Model {
     						//success
     					}
               //end of thumb creating
+
+              //db insert
+              $now = time();
+               // Euro czas
+              $date = unix_to_human($now, TRUE, 'eu');
+              $data = array(
+                'src' => $targetName,
+                'title' => $filename,
+                'caption' => $filename,
+                'date' => $date
+              );
+              $this->db->insert('gallery', $data);
+
             ?>
              <div class="success">Plik: <?php echo $targetName; ?> został przesłany</div>
              <?php

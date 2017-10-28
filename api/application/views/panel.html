@@ -5,6 +5,7 @@
 	<link rel="stylesheet" href="http://localhost/formtest/api/assets/css/bootstrap.min.css">
 	<script src="http://localhost/formtest/api/assets/ckeditor/ckeditor.js"></script>
 	<style>
+
 	#wrapper {
   text-align: center;
   margin: 0 auto;
@@ -18,18 +19,9 @@ form {
 }
 
 /* line 42, ../sass/screen.scss */
-#drop-btn {
-  background-color: #E6E2AF;
-  border: none;
-  padding: 10px;
-  width: 100px;
-  color: #002F2F;
-  font-weight: bold;
-}
+
 /* line 50, ../sass/screen.scss */
-#drop-btn:hover {
-  background-color: #EFECCA;
-}
+
 
 /* line 55, ../sass/screen.scss */
 #drop-area {
@@ -73,6 +65,7 @@ form {
 #drop-area img {
   max-width: 200px;
 }
+
 	</style>
 </head>
 <body>
@@ -140,8 +133,8 @@ form {
 		<div id="wrapper">
 		<form id="formfile" method="post" enctype="multipart/form-data">
 			<h2>Wybierz pliki</h2>
-		 <input id="select-btn" type="file" name="userImage[]" multiple>
-		 <input id="drop-btn" type="submit">
+		 <input id="select-btn" class="btn btn-secondary" type="file" name="userImage[]" multiple>
+		 <input id="drop-btn" class="btn btn-primary pull-right" type="submit">
 		</form>
 		 <div id="drop-area" class="upload-drop-zone">
 		  <h3 class="drop-text">...lub Przeciągnij i Upuść Pliki Tutaj</h3>

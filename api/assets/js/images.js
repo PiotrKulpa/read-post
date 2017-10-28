@@ -45,8 +45,8 @@ function Images (src) {
 			});
 
 			$.each(data, function(i,c){
-				html += '<a class="example-image-link" href="images/original/' + c.src + '" data-lightbox="example-2" data-title="Optional caption.">';
-				html += '<img class="example-image" src="images/thumbs/' + c.src +'" alt="Two men in bicycle jerseys sitting outside at table having coffee">';
+				html += '<a class="example-image-link" href="api/uploads/images/original/' + c.src + '" data-lightbox="example-2" data-title="Optional caption.">';
+				html += '<img class="example-image" src="api/uploads/images/thumbs/' + c.src +'" alt="Two men in bicycle jerseys sitting outside at table having coffee">';
 				html += '</a>';
 
 				img[i] = new Image();
@@ -57,7 +57,7 @@ function Images (src) {
 						$('.img-loader').hide();
 					}
 				}
-				img[i].src = 'images/thumbs/' + c.src;
+				img[i].src = 'api/uploads/images/thumbs/' + c.src;
 				});
 
 		};
@@ -73,8 +73,8 @@ function Images (src) {
 			});
 			//create new html in loop
 			$.each(data, function(i,c){
-			html += '<a class="example-image-link" href="images/original/' + c.src + '" data-lightbox="example-2" data-title="Optional caption.">';
-			html += '<img class="example-image" src="images/thumbs/' + c.src +'" alt="Two men in bicycle jerseys sitting outside at table having coffee">';
+			html += '<a class="example-image-link" href="api/uploads/images/original/' + c.src + '" data-lightbox="example-2" data-title="Optional caption.">';
+			html += '<img class="example-image" src="api/uploads/images/thumbs/' + c.src +'" alt="Two men in bicycle jerseys sitting outside at table having coffee">';
 			html += '</a>';
 		});
 

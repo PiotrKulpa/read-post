@@ -7,13 +7,14 @@ function Drop() {
 $('.loader').css('display', 'none');
  $("#drop-area").on('dragenter', function (e){
   e.preventDefault();
-  $(this).css('background', '#EFECCA');
+  $(this).css('background', '#DCDCDC');
  });
  $("#drop-area").on('dragover', function (e){
   e.preventDefault();
+  $(this).css('background', '#DCDCDC');
  });
  $("#drop-area").on('drop', function (e){
-  $(this).css('background', '#EFECCA');
+  $(this).css('background', '#FFFFFF');
   $('.loader').fadeIn();
   e.preventDefault();
   var image = e.originalEvent.dataTransfer.files;
